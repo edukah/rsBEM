@@ -1,0 +1,25 @@
+// Layer 2: Component — Admin Heading
+// Project-specific BEM component: shared across all admin pages.
+// Standard BEM structure (block__element--modifier).
+
+.admin-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e9ecef;
+
+    &__title {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #212529;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+}

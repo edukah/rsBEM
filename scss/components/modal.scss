@@ -1,0 +1,88 @@
+// Layer 2: Component — Modal
+// Standard BEM: block__element--modifier
+// No file-path prefix — this is a shared, reusable component.
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: none;
+    overflow-y: auto;
+
+    &--opened {
+        display: block;
+    }
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 16px;
+    }
+
+    &__dialog {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+
+        &--sm { max-width: 400px; }
+        &--lg { max-width: 900px; }
+        &--fullscreen { max-width: 100%; min-height: 100vh; border-radius: 0; }
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
+
+    &__body {
+        padding: 24px;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        padding: 16px 24px;
+        border-top: 1px solid #e9ecef;
+    }
+
+    &__close-button {
+        appearance: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        font-size: 1.25rem;
+        line-height: 1;
+        color: #6c757d;
+
+        &:hover {
+            color: #343a40;
+        }
+    }
+
+    &__notification-list {
+        list-style: none;
+        margin: 0;
+        padding: 12px 24px;
+
+        &--error { background: #f8d7da; color: #721c24; }
+        &--warning { background: #fff3cd; color: #856404; }
+        &--notice { background: #cce5ff; color: #004085; }
+        &--success { background: #d4edda; color: #155724; }
+    }
+}

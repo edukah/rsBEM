@@ -1,0 +1,72 @@
+// Layer 3: Utility — Layout
+// Pattern: prefix-value (no BEM structure)
+// Each class sets a single CSS property or a small group of related properties.
+
+// Display (d-)
+.d-block   { display: block; }
+.d-inline  { display: inline; }
+.d-ib      { display: inline-block; }
+.d-flex    { display: flex; }
+.d-grid    { display: grid; }
+.d-table   { display: table; }
+.d-none    { display: none; }
+
+// Flex (flex-)
+.flex-row     { flex-direction: row; }
+.flex-col     { flex-direction: column; }
+.flex-wrap    { flex-wrap: wrap; }
+.flex-nowrap  { flex-wrap: nowrap; }
+.flex-center  { align-items: center; justify-content: center; }
+.flex-between { justify-content: space-between; }
+.flex-end     { justify-content: flex-end; }
+.flex-start   { justify-content: flex-start; }
+.flex-vcenter { align-items: center; }
+
+.flex-gap-xs  { gap: 4px; }
+.flex-gap-sm  { gap: 8px; }
+.flex-gap-md  { gap: 16px; }
+.flex-gap-lg  { gap: 24px; }
+.flex-gap-xl  { gap: 32px; }
+
+// Grid (grid-)
+.grid-cols-2    { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3    { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4    { grid-template-columns: repeat(4, 1fr); }
+.grid-auto-fit  { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.grid-auto-fill { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+
+// Width (w-) / Height (h-)
+.w-full    { width: 100%; }
+.w-auto    { width: auto; }
+.w-50      { width: 50%; }
+.h-full    { height: 100%; }
+.h-auto    { height: auto; }
+.h-screen  { height: 100vh; }
+
+// Position (pos-)
+.pos-relative { position: relative; }
+.pos-absolute { position: absolute; }
+.pos-fixed    { position: fixed; }
+.pos-sticky   { position: sticky; }
+
+// Z-index (z-)
+.z-10      { z-index: 10; }
+.z-50      { z-index: 50; }
+.z-100     { z-index: 100; }
+.z-modal   { z-index: 1050; }
+.z-tooltip { z-index: 1070; }
+
+// Overflow (ovf-)
+.ovf-hidden { overflow: hidden; }
+.ovf-auto   { overflow: auto; }
+.ovf-scroll { overflow: scroll; }
+
+// Cursor (cursor-)
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+.cursor-grab    { cursor: grab; }
+
+// User-select (sel-)
+.sel-none { user-select: none; }
+.sel-all  { user-select: all; }
+.sel-text { user-select: text; }

@@ -1,0 +1,161 @@
+.sale-return_request {
+    &__container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+    }
+
+    &__page-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+
+        @media (max-width: 768px) {
+            font-size: 1.2rem;
+        }
+    }
+
+    &__status-badge {
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 600;
+
+        &--pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        &--approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        &--rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    }
+
+    // -- Process Bar --
+
+    &__process-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__process-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+
+        &--done {
+            opacity: 0.6;
+        }
+
+        &--active {
+            font-weight: bold;
+        }
+    }
+
+    &__process-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e9ecef;
+        font-weight: bold;
+    }
+
+    &__process-label {
+        font-size: 0.8rem;
+        color: #6c757d;
+    }
+
+    &__process-line {
+        flex: 1;
+        height: 2px;
+        background: #dee2e6;
+
+        &--active {
+            background: #198754;
+        }
+    }
+
+    // -- Product Table --
+
+    &__product-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+    }
+
+    &__product-row {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    &__product-name {
+        padding: 0.75rem;
+        font-weight: 500;
+    }
+
+    &__product-quantity {
+        padding: 0.75rem;
+        text-align: center;
+    }
+
+    &__product-status {
+        padding: 0.75rem;
+
+        &--approved {
+            color: #198754;
+        }
+
+        &--rejected {
+            color: #dc3545;
+        }
+    }
+
+    // -- Action Bar --
+
+    &__action-bar {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: flex-end;
+    }
+
+    &__save-btn {
+        padding: 0.5rem 1.5rem;
+        background: #198754;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    &__cancel-btn {
+        padding: 0.5rem 1.5rem;
+        background: #6c757d;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}

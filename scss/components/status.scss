@@ -1,0 +1,28 @@
+// Layer 2: Component — Status
+// Reusable status indicator component.
+// Standard BEM structure (block__element--modifier).
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+
+    &--success   { background: #d4edda; color: #155724; }
+    &--danger    { background: #f8d7da; color: #721c24; }
+    &--warning   { background: #fff3cd; color: #856404; }
+    &--secondary { background: #e2e3e5; color: #383d41; }
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #adb5bd;
+
+    &--active   { background: #28a745; }
+    &--inactive { background: #dc3545; }
+}
