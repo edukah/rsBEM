@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rsBEM Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --text: #212529;
+            --accent: #0d6efd;
+            --code-bg: #e9ecef;
+            --border: #dee2e6;
+            --card-bg: #fff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        h1, h2, h3 { color: #343a40; margin-top: 2em; }
+        h1 { margin-top: 0; border-bottom: 2px solid var(--border); padding-bottom: 12px; }
+
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #d63384;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 24px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+
+        pre .comment { color: #6a9955; }
+        pre .class { color: #ff85c0; }
+        pre .prop { color: #9cdcfe; }
+        pre .val { color: #ce9178; }
+        pre .tag { color: #569cd6; }
+
+        .example-section {
+            margin-top: 2rem;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .file-path {
+            display: inline-block;
+            background: #212529;
+            color: #81c784;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+
+        nav { margin-bottom: 24px; }
+        nav a {
+            margin-right: 16px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        nav a:hover { text-decoration: underline; }
+
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html">🏠 Home</a>
+        <a href="examples.html">🧪 Examples</a>
+    </nav>
+
+    <h1>rsBEM Examples</h1>
+    <p>Real-world examples showing rsBEM applied to common MVC template patterns.</p>
+
+    <!-- Example 1: Return Request -->
+    <h2>1. Sale — Return Request</h2>
+    <div class="example-section">
+        <div class="file-path">view/sale/return_request.tpl</div>
+        <div class="file-path" style="margin-left: 8px;">scss/sale/return_request.scss</div>
+
+        <h3>HTML</h3>
+<pre>&lt;div class="<span class="class">sale-return_request__container</span>"&gt;
+
+    &lt;div class="<span class="class">sale-return_request__header</span>"&gt;
+        &lt;h1 class="<span class="class">sale-return_request__page-title</span>"&gt;Return Request #1234&lt;/h1&gt;
+        &lt;span class="<span class="class">sale-return_request__status-badge--pending</span>"&gt;Pending&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class="<span class="class">sale-return_request__process-bar</span>"&gt;
+        &lt;div class="<span class="class">sale-return_request__process-step--done</span>"&gt;
+            &lt;div class="<span class="class">sale-return_request__process-icon</span>"&gt;✓&lt;/div&gt;
+            &lt;span class="<span class="class">sale-return_request__process-label</span>"&gt;Application&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="<span class="class">sale-return_request__process-line--active</span>"&gt;&lt;/div&gt;
+        &lt;div class="<span class="class">sale-return_request__process-step--active</span>"&gt;
+            &lt;div class="<span class="class">sale-return_request__process-icon</span>"&gt;2&lt;/div&gt;
+            &lt;span class="<span class="class">sale-return_request__process-label</span>"&gt;Review&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="<span class="class">sale-return_request__action-bar</span>"&gt;
+        &lt;button class="<span class="class">sale-return_request__save-btn</span>"&gt;Save&lt;/button&gt;
+        &lt;button class="<span class="class">sale-return_request__cancel-btn</span>"&gt;Cancel&lt;/button&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</pre>
+
+        <h3>SCSS</h3>
+<pre><span class="class">.sale-return_request</span> {
+    <span class="class">&amp;__container</span> {
+        <span class="prop">max-width</span>: <span class="val">960px</span>;
+        <span class="prop">margin</span>: <span class="val">0 auto</span>;
+    }
+
+    <span class="class">&amp;__status-badge</span> {
+        <span class="prop">padding</span>: <span class="val">4px 12px</span>;
+        <span class="prop">border-radius</span>: <span class="val">4px</span>;
+
+        <span class="class">&amp;--pending</span>  { <span class="prop">background</span>: <span class="val">#fff3cd</span>; <span class="prop">color</span>: <span class="val">#856404</span>; }
+        <span class="class">&amp;--approved</span> { <span class="prop">background</span>: <span class="val">#d4edda</span>; <span class="prop">color</span>: <span class="val">#155724</span>; }
+        <span class="class">&amp;--rejected</span> { <span class="prop">background</span>: <span class="val">#f8d7da</span>; <span class="prop">color</span>: <span class="val">#721c24</span>; }
+    }
+
+    <span class="class">&amp;__process-step</span> {
+        <span class="prop">display</span>: <span class="val">flex</span>;
+        <span class="prop">align-items</span>: <span class="val">center</span>;
+
+        <span class="class">&amp;--done</span>   { <span class="prop">opacity</span>: <span class="val">0.6</span>; }
+        <span class="class">&amp;--active</span> { <span class="prop">font-weight</span>: <span class="val">bold</span>; }
+    }
+
+    <span class="class">&amp;__page-title</span> {
+        <span class="prop">font-size</span>: <span class="val">1.5rem</span>;
+
+        <span class="comment">// Media queries nest inside their selector</span>
+        <span class="tag">@media</span> (max-width: 768px) {
+            <span class="prop">font-size</span>: <span class="val">1.2rem</span>;
+        }
+    }
+}</pre>
+    </div>
+
+    <!-- Example 2: Product Form -->
+    <h2>2. Catalog — Product Form</h2>
+    <div class="example-section">
+        <div class="file-path">view/catalog/product_form.tpl</div>
+        <div class="file-path" style="margin-left: 8px;">scss/catalog/product_form.scss</div>
+
+        <h3>HTML</h3>
+<pre>&lt;div class="<span class="class">catalog-product_form__container</span>"&gt;
+
+    &lt;div class="<span class="class">catalog-product_form__image-grid</span>"&gt;
+        &lt;div class="<span class="class">catalog-product_form__image-preview--main</span>"&gt;
+            &lt;img src="photo.jpg" /&gt;
+            &lt;button class="<span class="class">catalog-product_form__image-remove</span>"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="<span class="class">catalog-product_form__image-preview</span>"&gt;...&lt;/div&gt;
+        &lt;div class="<span class="class">catalog-product_form__image-preview--loading</span>"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="<span class="class">catalog-product_form__price-group</span>"&gt;
+        &lt;label class="<span class="class">catalog-product_form__price-label</span>"&gt;Price&lt;/label&gt;
+        &lt;input class="<span class="class">catalog-product_form__price-input</span>" /&gt;
+
+        &lt;label class="<span class="class">catalog-product_form__price-label</span>"&gt;Sale Price&lt;/label&gt;
+        &lt;input class="<span class="class">catalog-product_form__price-input--error</span>" /&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</pre>
+    </div>
+
+    <!-- Example 3: Dashboard -->
+    <h2>3. Common — Dashboard</h2>
+    <div class="example-section">
+        <div class="file-path">view/common/dashboard.tpl</div>
+        <div class="file-path" style="margin-left: 8px;">scss/common/dashboard.scss</div>
+
+        <h3>HTML</h3>
+<pre>&lt;div class="<span class="class">common-dashboard__container</span>"&gt;
+
+    &lt;p class="<span class="class">common-dashboard__welcome-text</span>"&gt;Welcome back!&lt;/p&gt;
+
+    &lt;div class="<span class="class">common-dashboard__stat-grid</span>"&gt;
+        &lt;div class="<span class="class">common-dashboard__stat-card</span>"&gt;
+            &lt;div class="<span class="class">common-dashboard__stat-value</span>"&gt;1,234&lt;/div&gt;
+            &lt;div class="<span class="class">common-dashboard__stat-label</span>"&gt;Orders&lt;/div&gt;
+            &lt;div class="<span class="class">common-dashboard__stat-trend--up</span>"&gt;↑ 12%&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="<span class="class">common-dashboard__stat-card</span>"&gt;
+            &lt;div class="<span class="class">common-dashboard__stat-value</span>"&gt;₺45,678&lt;/div&gt;
+            &lt;div class="<span class="class">common-dashboard__stat-label</span>"&gt;Revenue&lt;/div&gt;
+            &lt;div class="<span class="class">common-dashboard__stat-trend--down</span>"&gt;↓ 3%&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;table class="<span class="class">common-dashboard__order-table</span>"&gt;
+        &lt;tr class="<span class="class">common-dashboard__order-row--highlighted</span>"&gt;
+            &lt;td class="<span class="class">common-dashboard__order-id</span>"&gt;#5678&lt;/td&gt;
+            &lt;td class="<span class="class">common-dashboard__order-date</span>"&gt;2025-01-15&lt;/td&gt;
+            &lt;td class="<span class="class">common-dashboard__order-total</span>"&gt;₺1,250&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+
+&lt;/div&gt;</pre>
+    </div>
+
+    <!-- Naming Decision Guide -->
+    <h2>4. Naming Decision Guide</h2>
+    <div class="example-section">
+        <p>When naming an element, follow this decision flow:</p>
+<pre><span class="comment">// Step 1: What file is this in?</span>
+<span class="comment">// → view/sale/return_request.tpl</span>
+<span class="comment">// → prefix: sale-return_request</span>
+
+<span class="comment">// Step 2: What IS this element?</span>
+<span class="comment">// → It's a button that saves the form</span>
+<span class="comment">// → element: save-btn</span>
+
+<span class="comment">// Step 3: Does it belong to a logical group?</span>
+<span class="comment">// → The "process" section has: bar, step, icon, label, line</span>
+<span class="comment">// → All prefixed with "process-"</span>
+
+<span class="comment">// Step 4: Does it have states?</span>
+<span class="comment">// → step can be: done, active, upcoming</span>
+<span class="comment">// → modifier: --done, --active</span>
+
+<span class="comment">// Result:</span>
+<span class="class">.sale-return_request__process-step--done</span></pre>
+    </div>
+
+    <div class="note">
+        <p><small>rsBEM — 2025. A practical CSS naming approach for MVC projects.</small></p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+{
+  "rsBEM Block": {
+    "scope": "scss",
+    "prefix": "rsbem-block",
+    "body": [
+      ".${1:folder}-${2:file_name} {",
+      "\t&__${3:element} {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "rsBEM block with file-route prefix"
+  },
+  "rsBEM Element": {
+    "scope": "scss",
+    "prefix": "rsbem-element",
+    "body": [
+      "&__${1:element-name} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "rsBEM element"
+  },
+  "rsBEM Modifier": {
+    "scope": "scss",
+    "prefix": "rsbem-modifier",
+    "body": [
+      "&--${1:modifier} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "rsBEM modifier"
+  },
+  "rsBEM Element with Modifier": {
+    "scope": "scss",
+    "prefix": "rsbem-em",
+    "body": [
+      "&__${1:element-name} {",
+      "\t$2",
+      "",
+      "\t&--${3:modifier} {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "rsBEM element with modifier variant"
+  },
+  "rsBEM Media Query": {
+    "scope": "scss",
+    "prefix": "rsbem-media",
+    "body": [
+      "@media (max-width: ${1:768px}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Media query (nest inside selector)"
+  },
+  "rsBEM Full Template": {
+    "scope": "scss",
+    "prefix": "rsbem-template",
+    "body": [
+      ".${1:folder}-${2:file_name} {",
+      "\t&__container {",
+      "\t\t$0",
+      "\t}",
+      "",
+      "\t&__header {",
+      "\t}",
+      "",
+      "\t&__page-title {",
+      "\t}",
+      "}"
+    ],
+    "description": "rsBEM full template scaffold"
+  }
+}

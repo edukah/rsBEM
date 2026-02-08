@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rsBEM Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --text: #212529;
+            --accent: #0d6efd;
+            --code-bg: #e9ecef;
+            --folder: #d63384;
+            --file: #6f42c1;
+            --element: #198754;
+            --modifier: #fd7e14;
+            --border: #dee2e6;
+            --card-bg: #fff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        h1, h2, h3 { color: #343a40; margin-top: 2em; }
+        h1 { margin-top: 0; border-bottom: 2px solid var(--border); padding-bottom: 12px; }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            background: var(--accent);
+            color: white;
+            vertical-align: middle;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #495057;
+            margin-top: 8px;
+        }
+
+        /* Name breakdown */
+        .name-breakdown {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: 800;
+            margin: 24px 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .name-breakdown .letter {
+            position: relative;
+            padding: 0 2px;
+        }
+        .name-breakdown .letter span {
+            display: block;
+            font-size: 0.22em;
+            font-weight: 400;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 4px;
+        }
+        .name-breakdown .nb-r { color: var(--folder); }
+        .name-breakdown .nb-s { color: var(--file); }
+        .name-breakdown .nb-bem { color: var(--element); }
+
+        /* Syntax Box */
+        .syntax-box {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 28px 20px;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 1.15em;
+            text-align: center;
+            margin: 24px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: flex-start;
+        }
+
+        .part { position: relative; }
+        .part span {
+            display: block;
+            font-size: 0.55em;
+            opacity: 0.6;
+            margin-top: 6px;
+            font-family: sans-serif;
+        }
+
+        .c-folder { color: #ff85c0; }
+        .c-sep { color: #6c757d; }
+        .c-file { color: #b39ddb; }
+        .c-double { color: #90caf9; }
+        .c-element { color: #81c784; }
+        .c-modifier { color: #ffcc02; }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 640px) {
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .card h3 { margin-top: 0; }
+        .card.good { border-left: 5px solid var(--element); background-color: #f8fff9; }
+        .card.bad { border-left: 5px solid #dc3545; background-color: #fff8f8; }
+
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #d63384;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #f1f3f5;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 0.88em;
+            line-height: 1.5;
+        }
+
+        ul, ol { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+
+        .mapping-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+        .mapping-row .arrow { color: #198754; font-weight: bold; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th { background: #f8f9fa; font-weight: 600; }
+
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        nav {
+            margin-bottom: 24px;
+        }
+        nav a {
+            margin-right: 16px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        nav a:hover { text-decoration: underline; }
+
+        .comparison { margin-top: 12px; }
+        .vs-label {
+            display: inline-block;
+            width: 24px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .vs-good { color: var(--element); }
+        .vs-bad { color: #dc3545; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html">🏠 Home</a>
+        <a href="examples.html">🧪 Examples</a>
+    </nav>
+
+    <h1>rsBEM <span class="badge">v1.0.0</span></h1>
+
+    <div class="name-breakdown">
+        <div class="letter nb-r">r<span>Route / Root</span></div>
+        <div class="letter nb-s">s<span>Scoped / Strict</span></div>
+        <div class="letter nb-bem">BEM<span>Block Element Modifier</span></div>
+    </div>
+
+    <p class="subtitle">A file-system-grounded CSS naming convention for MVC projects.</p>
+    <p>Every class name maps directly to its template file. No guessing, no ambiguity.</p>
+
+    <h2>📐 Syntax</h2>
+    <div class="syntax-box">
+        <div class="part c-folder">[folder]<span>sale</span></div>
+        <div class="part c-sep">-</div>
+        <div class="part c-file">[file_name]<span>return_request</span></div>
+        <div class="part c-double">__</div>
+        <div class="part c-element">[element-name]<span>process-step</span></div>
+        <div class="part c-modifier">--[modifier]<span>active</span></div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Segment</th>
+                <th>Separator</th>
+                <th>Case</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong style="color:var(--folder)">folder</strong></td>
+                <td>start</td>
+                <td>kebab-case</td>
+                <td>Template directory name</td>
+            </tr>
+            <tr>
+                <td><strong style="color:var(--file)">file_name</strong></td>
+                <td><code>-</code> after folder</td>
+                <td>preserves original</td>
+                <td>Template file name (keeps snake_case if the file uses it)</td>
+            </tr>
+            <tr>
+                <td><strong style="color:var(--element)">element-name</strong></td>
+                <td><code>__</code></td>
+                <td>kebab-case</td>
+                <td>Describes <em>what</em> the element is</td>
+            </tr>
+            <tr>
+                <td><strong style="color:var(--modifier)">modifier</strong></td>
+                <td><code>--</code></td>
+                <td>kebab-case</td>
+                <td>State or variant</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>🔗 File Mapping</h2>
+    <p>The class prefix maps 1:1 to the template path. A <code>Ctrl + Shift + F</code> search on any class locates both the template and its styles.</p>
+
+    <div class="mapping-row">
+        <span>view/sale/return_request.tpl</span>
+        <span class="arrow">→</span>
+        <span>.sale-return_request__…</span>
+    </div>
+    <div class="mapping-row">
+        <span>view/catalog/product_form.tpl</span>
+        <span class="arrow">→</span>
+        <span>.catalog-product_form__…</span>
+    </div>
+    <div class="mapping-row">
+        <span>view/common/dashboard.tpl</span>
+        <span class="arrow">→</span>
+        <span>.common-dashboard__…</span>
+    </div>
+
+    <h2>🧠 Core Principles</h2>
+
+    <h3>1. Flat Hierarchy — No DOM Nesting</h3>
+    <p>The HTML tree is not mirrored in class names. The element name describes <strong>what</strong> it is, not <strong>where</strong> it sits.</p>
+    <div class="comparison">
+        <p><span class="vs-label vs-bad">❌</span> <code>.sale-return_request__form_footer_save_btn</code> <em>(DOM-coupled)</em></p>
+        <p><span class="vs-label vs-good">✅</span> <code>.sale-return_request__save-btn</code> <em>(flat identity)</em></p>
+    </div>
+
+    <h3>2. Semantic Grouping — Hyphens Group, Underscores Separate</h3>
+    <p>Hyphens express logical grouping within element names. Underscores are not used for sub-elements.</p>
+    <div class="comparison">
+        <p><span class="vs-label vs-bad">❌</span> <code>__process_bubble</code> <em>(false hierarchy)</em></p>
+        <p><span class="vs-label vs-good">✅</span> <code>__process-bubble</code> <em>(semantic group)</em></p>
+    </div>
+
+    <h3>3. Descriptive Names — No Ambiguity</h3>
+    <p>Element names are specific enough to understand without surrounding context.</p>
+    <div class="comparison">
+        <p><span class="vs-label vs-bad">❌</span> <code>__step</code> <em>(which step?)</em></p>
+        <p><span class="vs-label vs-good">✅</span> <code>__process-step</code> <em>(clear intent)</em></p>
+    </div>
+
+    <h2>✅ Correct vs ❌ Incorrect</h2>
+    <div class="card-grid">
+        <div class="card good">
+            <h3>✅ Correct</h3>
+            <p>Flat, scoped, descriptive:</p>
+            <ul>
+                <li><code>.sale-return_request__save-btn</code></li>
+                <li><code>.sale-return_request__product-list</code></li>
+                <li><code>.sale-return_request__process-step--done</code></li>
+            </ul>
+        </div>
+        <div class="card bad">
+            <h3>❌ Incorrect</h3>
+            <p>Generic, nested, or vague:</p>
+            <ul>
+                <li><code>.btn-save</code> <em>(which page?)</em></li>
+                <li><code>...__form_footer_btn</code> <em>(nested)</em></li>
+                <li><code>...__step</code> <em>(ambiguous)</em></li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>🔀 rsBEM vs BEM</h2>
+    <table>
+        <thead>
+            <tr><th>Aspect</th><th>BEM</th><th>rsBEM</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Block naming</td><td>Free-form</td><td>File-route prefix</td></tr>
+            <tr><td>File location</td><td>Unknown from class</td><td>Readable from class name</td></tr>
+            <tr><td>Scope</td><td>Component-scoped</td><td>File/template-scoped</td></tr>
+            <tr><td>Reusability</td><td>Cross-project</td><td>Within project</td></tr>
+            <tr><td>Searchability</td><td>Requires convention</td><td>Built-in (grep friendly)</td></tr>
+        </tbody>
+    </table>
+
+    <h2>⚙️ Stylelint Rule</h2>
+    <pre><code>{
+  "rules": {
+    "selector-class-pattern": [
+      "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-[a-z][a-z0-9]*(?:_[a-z0-9]+)*__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
+      {
+        "message": "Class names must follow rsBEM: [folder]-[file_name]__[element-name]--[modifier]"
+      }
+    ]
+  }
+}</code></pre>
+
+    <div class="note">
+        <p><strong>Note:</strong> Global utility classes like <code>d-flex</code>, <code>text-center</code>, <code>m-3</code> are not subject to rsBEM rules. They are helpers and can be used freely anywhere.</p>
+        <p><small>rsBEM — 2025. A practical CSS naming approach for MVC projects.</small></p>
+    </div>
+</div>
+
+</body>
+</html>

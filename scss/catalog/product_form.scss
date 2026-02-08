@@ -1,0 +1,105 @@
+.catalog-product_form {
+    &__container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+    }
+
+    &__page-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    // -- Image Section --
+
+    &__image-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-bottom: 2rem;
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &__image-preview {
+        aspect-ratio: 1;
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+
+        &--loading {
+            opacity: 0.5;
+        }
+
+        &--main {
+            border-color: #0d6efd;
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+    }
+
+    &__image-remove {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+
+    // -- Price Section --
+
+    &__price-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    &__price-input {
+        padding: 0.5rem;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+
+        &--error {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+    }
+
+    &__price-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    // -- Actions --
+
+    &__save-btn {
+        padding: 0.5rem 1.5rem;
+        background: #198754;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+    }
+
+    &__delete-btn {
+        padding: 0.5rem 1.5rem;
+        background: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+    }
+}
