@@ -99,19 +99,20 @@ When a folder name contains multiple words, it preserves its original form (typi
 
 ### Nested Folders
 
-When templates live in nested directories, the folder segments are joined with underscores:
+When templates live in nested directories, each folder segment is separated by a hyphen — the same separator used between folder and file. The **last** hyphen-separated segment before `__` is always the file name; everything before it is a folder.
 
 ```
 Template: view/marketplace/trendyol/claim.tpl
-  Folder: marketplace/trendyol → marketplace_trendyol
-   Class: .marketplace_trendyol-claim__…
+   Class: .marketplace-trendyol-claim__…
 ```
 
 ```
- marketplace_trendyol-claim__status-badge--error
- ────────┬──────────  ──┬──  ─────┬─────  ──┬──
-     folder (joined)   file    element    modifier
+ marketplace-trendyol-claim__status-badge--error
+ ─────┬───── ───┬──── ─┬──  ─────┬─────  ──┬──
+   folder    folder   file    element    modifier
 ```
+
+> **Why not underscores?** Folder and file names already use underscores internally (snake_case). If nested folders were also joined with underscores, `marketplace_trendyol` could mean either a single folder named `marketplace_trendyol` or two nested folders `marketplace/trendyol`. With hyphens, every hyphen in the prefix is **always** a path separator — no ambiguity.
 
 ---
 
@@ -137,7 +138,7 @@ Template: view/user_settings/profile_form.tpl
 
 Nested folder:
 Template: view/marketplace/trendyol/claim.tpl
-   Class: .marketplace_trendyol-claim__...
+   Class: .marketplace-trendyol-claim__...
 ```
 
 Any rsBEM class can be `grep`ped to find both its `.tpl` and `.scss` file.
@@ -190,7 +191,7 @@ Describes **what the element is**, scoped to its file:
 .catalog-product_form__price-input {}
 .catalog-product_form__image-preview--loading {}
 .user_settings-profile_form__avatar {}         // multi-word folder
-.marketplace_trendyol-claim__status-badge {}   // nested folder
+.marketplace-trendyol-claim__status-badge {}   // nested folder
 ```
 
 ### ❌ Incorrect
@@ -210,8 +211,11 @@ Describes **what the element is**, scoped to its file:
 // ❌ Wrong separator in element
 .sale-return_request__process_bubble {}  // underscore creates false hierarchy
 
-// ❌ Folder converted to kebab-case
+// ❌ Folder name converted to kebab-case
 .user-settings-profile_form__avatar {}  // folder MUST preserve original (user_settings, not user-settings)
+
+// ❌ Nested folders joined with underscore instead of hyphen
+.marketplace_trendyol-claim__status-badge {}  // use marketplace-trendyol-claim (hyphen joins path segments)
 ```
 
 ---
@@ -337,7 +341,7 @@ rsBEM is a **scoping strategy** that works alongside BEM and utility classes. It
 {
   "rules": {
     "selector-class-pattern": [
-      "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*-[a-z][a-z0-9]*(?:_[a-z0-9]+)*__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
+      "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*(?:-[a-z][a-z0-9]*(?:_[a-z0-9]+)*)+__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
       {
         "message": "Class names must follow rsBEM: [folder]-[file_name]__[element-name]--[modifier]"
       }
@@ -346,7 +350,7 @@ rsBEM is a **scoping strategy** that works alongside BEM and utility classes. It
 }
 ```
 
-> **Regex breakdown:** `folder` = `[a-z][a-z0-9]*(?:_[a-z0-9]+)*` (supports snake_case), `-` separator, `file_name` = same pattern, `__` separator, `element` = kebab-case, `--modifier` = optional kebab-case.
+> **Regex breakdown:** A `segment` is `[a-z][a-z0-9]*(?:_[a-z0-9]+)*` (supports snake_case). The prefix is `segment(-segment)+` — one or more hyphen-separated segments (minimum 2: folder + file, more for nested folders). Then `__` separator, `element` = kebab-case, `--modifier` = optional kebab-case.
 
 ---
 

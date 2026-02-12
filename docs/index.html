@@ -313,11 +313,11 @@
     </div>
 
     <h3>Nested Folder</h3>
-    <p>When templates live in nested directories, folder segments are joined with underscores:</p>
+    <p>When templates live in nested directories, each folder segment is separated by a hyphen — the same separator used between folder and file. The last segment before <code>__</code> is always the file:</p>
     <div class="mapping-row">
         <span>view/marketplace/trendyol/claim.tpl</span>
         <span class="arrow">→</span>
-        <span>.marketplace_trendyol-claim__…</span>
+        <span>.marketplace-trendyol-claim__…</span>
     </div>
 
     <h2>🧠 Core Principles</h2>
@@ -352,7 +352,7 @@
                 <li><code>.sale-return_request__save-btn</code></li>
                 <li><code>.sale-return_request__process-step--done</code></li>
                 <li><code>.user_settings-profile_form__avatar</code></li>
-                <li><code>.marketplace_trendyol-claim__status-badge</code></li>
+                <li><code>.marketplace-trendyol-claim__status-badge</code></li>
             </ul>
         </div>
         <div class="card bad">
@@ -384,7 +384,7 @@
     <pre><code>{
   "rules": {
     "selector-class-pattern": [
-      "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*-[a-z][a-z0-9]*(?:_[a-z0-9]+)*__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
+      "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*(?:-[a-z][a-z0-9]*(?:_[a-z0-9]+)*)+__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
       {
         "message": "Class names must follow rsBEM: [folder]-[file_name]__[element-name]--[modifier]"
       }

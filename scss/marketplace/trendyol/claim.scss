@@ -1,10 +1,10 @@
 // ============================================================
 // rsBEM Example: Nested Folder
 // Template: view/marketplace/trendyol/claim.tpl
-// Folder: marketplace/trendyol → marketplace_trendyol (joined)
+// Folder: marketplace/trendyol → marketplace-trendyol (hyphen-joined)
 // ============================================================
 
-.marketplace_trendyol-claim {
+.marketplace-trendyol-claim {
     &__container {
         padding: 20px;
     }

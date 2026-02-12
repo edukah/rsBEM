@@ -296,26 +296,26 @@
         <div class="file-path">view/marketplace/trendyol/claim.tpl</div>
         <div class="file-path" style="margin-left: 8px;">scss/marketplace/trendyol/claim.scss</div>
 
-        <p>When templates live in nested directories, the folder segments are joined with underscores:</p>
-        <p><code>marketplace/trendyol/</code> → <code>marketplace_trendyol</code></p>
+        <p>When templates live in nested directories, each folder is separated by a hyphen. The last segment before <code>__</code> is the file:</p>
+        <p><code>marketplace/trendyol/</code> → <code>marketplace-trendyol</code></p>
 
         <h3>HTML</h3>
-<pre>&lt;div class="<span class="class">marketplace_trendyol-claim__container</span>"&gt;
+<pre>&lt;div class="<span class="class">marketplace-trendyol-claim__container</span>"&gt;
 
-    &lt;div class="<span class="class">marketplace_trendyol-claim__header</span>"&gt;
-        &lt;h1 class="<span class="class">marketplace_trendyol-claim__page-title</span>"&gt;Claim #5678&lt;/h1&gt;
-        &lt;span class="<span class="class">marketplace_trendyol-claim__status-badge--open</span>"&gt;Open&lt;/span&gt;
+    &lt;div class="<span class="class">marketplace-trendyol-claim__header</span>"&gt;
+        &lt;h1 class="<span class="class">marketplace-trendyol-claim__page-title</span>"&gt;Claim #5678&lt;/h1&gt;
+        &lt;span class="<span class="class">marketplace-trendyol-claim__status-badge--open</span>"&gt;Open&lt;/span&gt;
     &lt;/div&gt;
 
-    &lt;div class="<span class="class">marketplace_trendyol-claim__detail-section</span>"&gt;
-        &lt;p class="<span class="class">marketplace_trendyol-claim__detail-label</span>"&gt;Reason&lt;/p&gt;
-        &lt;p class="<span class="class">marketplace_trendyol-claim__detail-value</span>"&gt;Missing item&lt;/p&gt;
+    &lt;div class="<span class="class">marketplace-trendyol-claim__detail-section</span>"&gt;
+        &lt;p class="<span class="class">marketplace-trendyol-claim__detail-label</span>"&gt;Reason&lt;/p&gt;
+        &lt;p class="<span class="class">marketplace-trendyol-claim__detail-value</span>"&gt;Missing item&lt;/p&gt;
     &lt;/div&gt;
 
 &lt;/div&gt;</pre>
 
         <h3>SCSS</h3>
-<pre><span class="class">.marketplace_trendyol-claim</span> {
+<pre><span class="class">.marketplace-trendyol-claim</span> {
     <span class="class">&amp;__container</span> {
         <span class="prop">padding</span>: <span class="val">20px</span>;
     }
