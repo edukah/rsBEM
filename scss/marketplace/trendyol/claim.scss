@@ -1,0 +1,44 @@
+// ============================================================
+// rsBEM Example: Nested Folder
+// Template: view/marketplace/trendyol/claim.tpl
+// Folder: marketplace/trendyol → marketplace_trendyol (joined)
+// ============================================================
+
+.marketplace_trendyol-claim {
+    &__container {
+        padding: 20px;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    &__page-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    &__status-badge {
+        padding: 4px 12px;
+        border-radius: 4px;
+
+        &--open   { background: #fff3cd; color: #856404; }
+        &--closed { background: #d4edda; color: #155724; }
+    }
+
+    &__detail-section {
+        margin-bottom: 16px;
+    }
+
+    &__detail-label {
+        font-weight: 600;
+        color: #6c757d;
+    }
+
+    &__detail-value {
+        margin-top: 4px;
+    }
+}

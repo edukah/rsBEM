@@ -243,8 +243,95 @@
 &lt;/div&gt;</pre>
     </div>
 
+    <!-- Example 4: Multi-Word Folder -->
+    <h2>4. Multi-Word Folder — User Settings</h2>
+    <div class="example-section">
+        <div class="file-path">view/user_settings/profile_form.tpl</div>
+        <div class="file-path" style="margin-left: 8px;">scss/user_settings/profile_form.scss</div>
+
+        <p>When a folder name contains multiple words (snake_case), it is preserved as-is. The hyphen separates folder from file:</p>
+
+        <h3>HTML</h3>
+<pre>&lt;div class="<span class="class">user_settings-profile_form__container</span>"&gt;
+
+    &lt;div class="<span class="class">user_settings-profile_form__avatar-section</span>"&gt;
+        &lt;img class="<span class="class">user_settings-profile_form__avatar-image</span>" /&gt;
+        &lt;button class="<span class="class">user_settings-profile_form__avatar-upload</span>"&gt;Change&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class="<span class="class">user_settings-profile_form__field-group</span>"&gt;
+        &lt;label class="<span class="class">user_settings-profile_form__field-label</span>"&gt;Name&lt;/label&gt;
+        &lt;input class="<span class="class">user_settings-profile_form__field-input</span>" /&gt;
+    &lt;/div&gt;
+
+    &lt;button class="<span class="class">user_settings-profile_form__save-btn</span>"&gt;Save&lt;/button&gt;
+
+&lt;/div&gt;</pre>
+
+        <h3>SCSS</h3>
+<pre><span class="class">.user_settings-profile_form</span> {
+    <span class="class">&amp;__container</span> {
+        <span class="prop">max-width</span>: <span class="val">640px</span>;
+    }
+
+    <span class="class">&amp;__avatar-image</span> {
+        <span class="prop">width</span>: <span class="val">80px</span>;
+        <span class="prop">height</span>: <span class="val">80px</span>;
+        <span class="prop">border-radius</span>: <span class="val">50%</span>;
+    }
+
+    <span class="class">&amp;__save-btn</span> {
+        <span class="prop">margin-top</span>: <span class="val">20px</span>;
+    }
+}</pre>
+
+        <p style="font-size:0.85em; color:#666; margin-top:12px;">
+            ⚠️ <strong>Common mistake:</strong> <code>.user-settings-profile_form__…</code> — the folder <code>user_settings</code> must NOT be converted to kebab-case. Preserve the original form.
+        </p>
+    </div>
+
+    <!-- Example 5: Nested Folder -->
+    <h2>5. Nested Folder — Marketplace Integration</h2>
+    <div class="example-section">
+        <div class="file-path">view/marketplace/trendyol/claim.tpl</div>
+        <div class="file-path" style="margin-left: 8px;">scss/marketplace/trendyol/claim.scss</div>
+
+        <p>When templates live in nested directories, the folder segments are joined with underscores:</p>
+        <p><code>marketplace/trendyol/</code> → <code>marketplace_trendyol</code></p>
+
+        <h3>HTML</h3>
+<pre>&lt;div class="<span class="class">marketplace_trendyol-claim__container</span>"&gt;
+
+    &lt;div class="<span class="class">marketplace_trendyol-claim__header</span>"&gt;
+        &lt;h1 class="<span class="class">marketplace_trendyol-claim__page-title</span>"&gt;Claim #5678&lt;/h1&gt;
+        &lt;span class="<span class="class">marketplace_trendyol-claim__status-badge--open</span>"&gt;Open&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class="<span class="class">marketplace_trendyol-claim__detail-section</span>"&gt;
+        &lt;p class="<span class="class">marketplace_trendyol-claim__detail-label</span>"&gt;Reason&lt;/p&gt;
+        &lt;p class="<span class="class">marketplace_trendyol-claim__detail-value</span>"&gt;Missing item&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</pre>
+
+        <h3>SCSS</h3>
+<pre><span class="class">.marketplace_trendyol-claim</span> {
+    <span class="class">&amp;__container</span> {
+        <span class="prop">padding</span>: <span class="val">20px</span>;
+    }
+
+    <span class="class">&amp;__status-badge</span> {
+        <span class="prop">padding</span>: <span class="val">4px 12px</span>;
+        <span class="prop">border-radius</span>: <span class="val">4px</span>;
+
+        <span class="class">&amp;--open</span>    { <span class="prop">background</span>: <span class="val">#fff3cd</span>; }
+        <span class="class">&amp;--closed</span>  { <span class="prop">background</span>: <span class="val">#d4edda</span>; }
+    }
+}</pre>
+    </div>
+
     <!-- Naming Decision Guide -->
-    <h2>4. Naming Decision Guide</h2>
+    <h2>6. Naming Decision Guide</h2>
     <div class="example-section">
         <p>When naming an element, follow this decision flow:</p>
 <pre><span class="comment">// Step 1: What file is this in?</span>

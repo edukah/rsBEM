@@ -244,6 +244,11 @@
         <div class="part c-modifier">--[modifier]<span>active</span></div>
     </div>
 
+    <p style="font-size:0.9em; color:#666; text-align:center; margin-top:-12px;">
+        <strong>Why hyphen as the separator?</strong> Underscores are used <em>within</em> folder and file names (snake_case).
+        The hyphen (<code>-</code>) is reserved exclusively as the folder↔file separator, making parsing unambiguous.
+    </p>
+
     <table>
         <thead>
             <tr>
@@ -257,8 +262,8 @@
             <tr>
                 <td><strong style="color:var(--folder)">folder</strong></td>
                 <td>start</td>
-                <td>kebab-case</td>
-                <td>Template directory name</td>
+                <td>preserves original</td>
+                <td>Template directory name (keeps snake_case if the directory uses it)</td>
             </tr>
             <tr>
                 <td><strong style="color:var(--file)">file_name</strong></td>
@@ -300,6 +305,21 @@
         <span>.common-dashboard__…</span>
     </div>
 
+    <h3>Multi-Word Folder</h3>
+    <div class="mapping-row">
+        <span>view/user_settings/profile_form.tpl</span>
+        <span class="arrow">→</span>
+        <span>.user_settings-profile_form__…</span>
+    </div>
+
+    <h3>Nested Folder</h3>
+    <p>When templates live in nested directories, folder segments are joined with underscores:</p>
+    <div class="mapping-row">
+        <span>view/marketplace/trendyol/claim.tpl</span>
+        <span class="arrow">→</span>
+        <span>.marketplace_trendyol-claim__…</span>
+    </div>
+
     <h2>🧠 Core Principles</h2>
 
     <h3>1. Flat Hierarchy — No DOM Nesting</h3>
@@ -330,8 +350,9 @@
             <p>Flat, scoped, descriptive:</p>
             <ul>
                 <li><code>.sale-return_request__save-btn</code></li>
-                <li><code>.sale-return_request__product-list</code></li>
                 <li><code>.sale-return_request__process-step--done</code></li>
+                <li><code>.user_settings-profile_form__avatar</code></li>
+                <li><code>.marketplace_trendyol-claim__status-badge</code></li>
             </ul>
         </div>
         <div class="card bad">
@@ -340,7 +361,7 @@
             <ul>
                 <li><code>.btn-save</code> <em>(which page?)</em></li>
                 <li><code>...__form_footer_btn</code> <em>(nested)</em></li>
-                <li><code>...__step</code> <em>(ambiguous)</em></li>
+                <li><code>.user-settings-profile_form__…</code> <em>(folder converted to kebab)</em></li>
             </ul>
         </div>
     </div>
@@ -363,7 +384,7 @@
     <pre><code>{
   "rules": {
     "selector-class-pattern": [
-      "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-[a-z][a-z0-9]*(?:_[a-z0-9]+)*__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
+      "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*-[a-z][a-z0-9]*(?:_[a-z0-9]+)*__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
       {
         "message": "Class names must follow rsBEM: [folder]-[file_name]__[element-name]--[modifier]"
       }
@@ -372,7 +393,14 @@
 }</code></pre>
 
     <div class="note">
-        <p><strong>Note:</strong> Global utility classes like <code>d-flex</code>, <code>text-center</code>, <code>m-3</code> are not subject to rsBEM rules. They are helpers and can be used freely anywhere.</p>
+        <p><strong>Exclusions:</strong> The following are <em>not</em> subject to rsBEM rules:</p>
+        <ul style="font-size:0.9em; margin-top:4px;">
+            <li>Global utility classes (<code>d-flex</code>, <code>m-3</code>, <code>text-center</code>)</li>
+            <li>Shared UI components (buttons, modals, slide-menus — standard BEM)</li>
+            <li>Validation error containers (<code>err-*</code>)</li>
+            <li>Framework conventions (<code>admin-listing_*</code>)</li>
+            <li>Tab/accordion IDs used for behavior, not styling</li>
+        </ul>
         <p><small>rsBEM — 2025. A practical CSS naming approach for MVC projects.</small></p>
     </div>
 </div>

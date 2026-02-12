@@ -67,7 +67,7 @@ In a project with many templates, `.save-btn` could be **anywhere**.
 
 | Segment | Separator | Case | Description |
 |---------|-----------|------|-------------|
-| **folder** | start | kebab-case | Template directory name |
+| **folder** | start | preserves original | Template directory name (keeps snake_case if the directory uses it) |
 | **file_name** | `-` after folder | preserves original | Template file name (keeps snake_case if the file uses it) |
 | **element-name** | `__` | kebab-case | Describes **what** the element is |
 | **modifier** | `--` | kebab-case | State or variant (active, error, disabled…) |
@@ -81,6 +81,36 @@ In a project with many templates, `.save-btn` could be **anywhere**.
 folder   file_name     element   modifier
   r          r             BEM      BEM
   └── route-scoped ──┘  └── block element modifier ──┘
+```
+
+### Multi-Word Folder
+
+When a folder name contains multiple words, it preserves its original form (typically snake_case):
+
+```
+ user_settings-profile_form__save-btn
+ ─────┬─────  ─────┬──────  ───┬────
+    folder      file_name    element
+(snake_case   (snake_case   (kebab-case)
+  preserved)   preserved)
+```
+
+> **Why hyphen as the separator?** Underscores are used *within* folder and file names (snake_case). The hyphen (`-`) is reserved exclusively as the folder↔file separator. This makes parsing unambiguous — a hyphen between the route prefix and `__` always marks the folder-file boundary.
+
+### Nested Folders
+
+When templates live in nested directories, the folder segments are joined with underscores:
+
+```
+Template: view/marketplace/trendyol/claim.tpl
+  Folder: marketplace/trendyol → marketplace_trendyol
+   Class: .marketplace_trendyol-claim__…
+```
+
+```
+ marketplace_trendyol-claim__status-badge--error
+ ────────┬──────────  ──┬──  ─────┬─────  ──┬──
+     folder (joined)   file    element    modifier
 ```
 
 ---
@@ -100,6 +130,14 @@ Template: view/catalog/product_form.tpl
 
 Template: view/common/dashboard.tpl
    Class: .common-dashboard__...
+
+Multi-word folder:
+Template: view/user_settings/profile_form.tpl
+   Class: .user_settings-profile_form__...
+
+Nested folder:
+Template: view/marketplace/trendyol/claim.tpl
+   Class: .marketplace_trendyol-claim__...
 ```
 
 Any rsBEM class can be `grep`ped to find both its `.tpl` and `.scss` file.
@@ -151,6 +189,8 @@ Describes **what the element is**, scoped to its file:
 .sale-return_request__status-badge--pending {}
 .catalog-product_form__price-input {}
 .catalog-product_form__image-preview--loading {}
+.user_settings-profile_form__avatar {}         // multi-word folder
+.marketplace_trendyol-claim__status-badge {}   // nested folder
 ```
 
 ### ❌ Incorrect
@@ -169,6 +209,9 @@ Describes **what the element is**, scoped to its file:
 
 // ❌ Wrong separator in element
 .sale-return_request__process_bubble {}  // underscore creates false hierarchy
+
+// ❌ Folder converted to kebab-case
+.user-settings-profile_form__avatar {}  // folder MUST preserve original (user_settings, not user-settings)
 ```
 
 ---
@@ -279,9 +322,12 @@ The file-scoped prefix is written as a variable or directly, with media queries 
 | Page/template-specific styles | ✅ Yes |
 | Styles scoped to a single .tpl file | ✅ Yes |
 | Global utility classes (`d-flex`, `m-3`) | ❌ No — use them freely |
-| Shared UI components (buttons, modals) | ❌ No — use standard BEM |
+| Shared UI components (buttons, modals, slide-menus) | ❌ No — use standard BEM |
+| Validation error containers (`err-*`) | ❌ No — framework convention |
+| Admin listing framework (`admin-listing_*`) | ❌ No — framework convention |
+| Tab/accordion IDs (behavior, not styling) | ❌ No — use descriptive IDs |
 
-rsBEM is a **scoping strategy** that works alongside BEM and utility classes.
+rsBEM is a **scoping strategy** that works alongside BEM and utility classes. It applies specifically to **template-scoped styles** — classes that exist only within a single template file.
 
 ---
 
@@ -291,7 +337,7 @@ rsBEM is a **scoping strategy** that works alongside BEM and utility classes.
 {
   "rules": {
     "selector-class-pattern": [
-      "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-[a-z][a-z0-9]*(?:_[a-z0-9]+)*__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
+      "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*-[a-z][a-z0-9]*(?:_[a-z0-9]+)*__[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$",
       {
         "message": "Class names must follow rsBEM: [folder]-[file_name]__[element-name]--[modifier]"
       }
@@ -299,6 +345,8 @@ rsBEM is a **scoping strategy** that works alongside BEM and utility classes.
   }
 }
 ```
+
+> **Regex breakdown:** `folder` = `[a-z][a-z0-9]*(?:_[a-z0-9]+)*` (supports snake_case), `-` separator, `file_name` = same pattern, `__` separator, `element` = kebab-case, `--modifier` = optional kebab-case.
 
 ---
 

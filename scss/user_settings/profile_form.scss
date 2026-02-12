@@ -1,0 +1,60 @@
+// ============================================================
+// rsBEM Example: Multi-Word Folder
+// Template: view/user_settings/profile_form.tpl
+// Folder: user_settings (snake_case preserved — NOT kebab-cased)
+// ============================================================
+
+.user_settings-profile_form {
+    &__container {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+
+    &__avatar-section {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    &__avatar-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__avatar-upload {
+        cursor: pointer;
+        color: #0d6efd;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__field-group {
+        margin-bottom: 16px;
+    }
+
+    &__field-label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    &__field-input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+
+        &--error {
+            border-color: #dc3545;
+        }
+    }
+
+    &__save-btn {
+        margin-top: 20px;
+    }
+}
